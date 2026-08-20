@@ -786,33 +786,8 @@
     }
 
     /* ==========================================================================
-       PROJECTS SECTION (READY FOR USER'S PROJECTS)
+       PROJECTS SECTION (CLASSIC AUTOS REAL EVIDENCE ADDED)
        ========================================================================== */
-    .projects-notice {
-      padding: 18px 24px;
-      border-radius: var(--radius-md);
-      background: rgba(6, 182, 212, 0.08);
-      border: 1px solid rgba(6, 182, 212, 0.25);
-      margin-bottom: 36px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .projects-notice i {
-      font-size: 1.6rem;
-      color: var(--accent-cyan);
-    }
-
-    .projects-notice-text p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-    }
-
-    .projects-notice-text strong {
-      color: var(--text-main);
-    }
-
     .project-filters {
       display: flex;
       justify-content: center;
@@ -841,44 +816,57 @@
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
       gap: 28px;
     }
 
     .project-card {
       overflow: hidden;
-    }
-
-    .project-media-placeholder {
-      height: 200px;
-      background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.1), rgba(10, 14, 24, 0.9)), #0b101b;
-      border-bottom: 1px solid var(--border-glass);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    }
+
+    .project-image-wrapper {
       position: relative;
-      gap: 10px;
-      color: var(--text-muted);
-      padding: 20px;
-      text-align: center;
+      width: 100%;
+      height: 240px;
+      background: #0a0e17;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-glass);
     }
 
-    .project-media-placeholder i {
-      font-size: 2.5rem;
+    .project-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 0.5s ease;
+    }
+
+    .project-card:hover .project-image-wrapper img {
+      transform: scale(1.04);
+    }
+
+    .project-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(10, 14, 24, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-glass-bright);
       color: var(--accent-lime);
-      opacity: 0.8;
-    }
-
-    .project-media-placeholder span {
-      font-size: 0.8rem;
-      font-weight: 600;
+      font-size: 0.72rem;
+      font-weight: 700;
       letter-spacing: 0.05em;
-      text-transform: uppercase;
     }
 
     .project-body {
       padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     .project-tags {
@@ -908,6 +896,7 @@
       font-size: 0.88rem;
       color: var(--text-muted);
       margin-bottom: 18px;
+      line-height: 1.5;
     }
 
     .project-stats-row {
@@ -915,6 +904,7 @@
       justify-content: space-between;
       padding-top: 14px;
       border-top: 1px solid var(--border-glass);
+      margin-top: auto;
     }
 
     .p-stat {
@@ -1190,7 +1180,7 @@
 
           <div class="hero-actions">
             <a href="#projects" class="btn-glow">
-              <i class="fa-solid fa-eye"></i> View Projects Section
+              <i class="fa-solid fa-eye"></i> View Live Projects Evidence
             </a>
             <a href="Usman Ali Resume.pdf" target="_blank" class="btn-glass">
               <i class="fa-solid fa-file-arrow-down"></i> Download Resume (PDF)
@@ -1218,29 +1208,29 @@
               <span class="dot-yellow"></span>
               <span class="dot-green"></span>
             </div>
-            <div class="card-tag"><i class="fa-solid fa-bolt"></i> SEO Organic Growth</div>
+            <div class="card-tag"><i class="fa-solid fa-bolt"></i> Classic Autos SEO Case Study</div>
           </div>
 
           <div class="metric-grid">
             <div class="metric-box">
-              <div class="metric-lbl">Keyword Strategy</div>
-              <div class="metric-val">100%</div>
-              <div class="metric-trend"><i class="fa-solid fa-arrow-trend-up"></i> Intent-Focused</div>
+              <div class="metric-lbl">Organic Clicks</div>
+              <div class="metric-val">9.92K</div>
+              <div class="metric-trend"><i class="fa-solid fa-arrow-trend-up"></i> GSC Verified</div>
             </div>
             <div class="metric-box">
-              <div class="metric-lbl">Technical SEO</div>
-              <div class="metric-val">Crawlable</div>
-              <div class="metric-trend"><i class="fa-solid fa-check"></i> Index Optimized</div>
+              <div class="metric-lbl">Impressions</div>
+              <div class="metric-val">316K</div>
+              <div class="metric-trend"><i class="fa-solid fa-check"></i> High Visibility</div>
             </div>
             <div class="metric-box">
-              <div class="metric-lbl">Local SEO (GBP)</div>
-              <div class="metric-val">Top Rank</div>
-              <div class="metric-trend"><i class="fa-solid fa-location-crosshairs"></i> Maps & Calls</div>
+              <div class="metric-lbl">GMB Interactions</div>
+              <div class="metric-val">241</div>
+              <div class="metric-trend"><i class="fa-solid fa-arrow-trend-up"></i> +51.6% Growth</div>
             </div>
             <div class="metric-box">
-              <div class="metric-lbl">Lead Gen</div>
-              <div class="metric-val">Data-Driven</div>
-              <div class="metric-trend"><i class="fa-solid fa-chart-line"></i> High Conversion</div>
+              <div class="metric-lbl">GMB Directions</div>
+              <div class="metric-val">128</div>
+              <div class="metric-trend"><i class="fa-solid fa-location-arrow"></i> +68.4% Growth</div>
             </div>
           </div>
 
@@ -1277,7 +1267,6 @@
         <!-- Left: Profile Summary Card -->
         <div class="glass-panel profile-card">
           <div class="avatar-wrapper">
-            <!-- Using user resume profile picture reference or fallback placeholder -->
             <img src="https://ui-avatars.com/api/?name=Usman+Ali&background=10b981&color=04120a&size=200&bold=true" alt="Usman Ali SEO Specialist">
           </div>
           
@@ -1518,53 +1507,44 @@
   </section>
 
   <!-- ==========================================================================
-       PROJECTS SECTION (READY TO RECEIVE YOUR PROJECTS)
+       PROJECTS SECTION (CLASSIC AUTOS REAL PROJECT EVIDENCE ATTACHED)
        ========================================================================== -->
   <section class="section" id="projects">
     <div class="container">
       
       <div class="section-header">
         <span class="section-subtitle">Portfolio Showcase</span>
-        <h2 class="section-title">Projects & Case Studies</h2>
-        <p class="section-desc">This section is fully configured and styled. Your real project evidence, screenshots, and metrics will be added here as soon as you share them!</p>
-      </div>
-
-      <!-- Banner Notice for User -->
-      <div class="projects-notice">
-        <i class="fa-solid fa-circle-info"></i>
-        <div class="projects-notice-text">
-          <strong>Ready for your Projects & Screenshots!</strong>
-          <p>The layout below contains ready-to-use placeholder project cards. As soon as you provide your project titles, Search Console screenshots, and metrics, we will seamlessly insert them here.</p>
-        </div>
+        <h2 class="section-title">Featured Projects & Real Evidence</h2>
+        <p class="section-desc">Actual client results, Search Console analytics, Sitemap setups, and Google Business Profile growth metrics.</p>
       </div>
 
       <!-- Filter Buttons -->
       <div class="project-filters">
         <button class="filter-btn active">All Projects</button>
+        <button class="filter-btn">Search Console</button>
         <button class="filter-btn">Technical SEO</button>
-        <button class="filter-btn">On-Page SEO</button>
         <button class="filter-btn">Local SEO</button>
       </div>
 
       <!-- Projects Grid -->
       <div class="projects-grid">
 
-        <!-- Placeholder Project Card 1 -->
+        <!-- Real Project Card 1: Classic Autos GSC & Technical SEO -->
         <article class="glass-card project-card">
-          <div class="project-media-placeholder">
-            <i class="fa-solid fa-square-poll-vertical"></i>
-            <span>Project Screenshot 01 Placeholder</span>
-            <small style="font-size: 0.72rem; color: var(--accent-lime);">Ready for Search Console / Site Evidence</small>
+          <div class="project-image-wrapper">
+            <span class="project-badge"><i class="fa-solid fa-circle-check"></i> Verified Evidence</span>
+            <img src="assets/classic-autos-gsc.png" alt="Classic Autos Search Console, Sitemap and Robots.txt Evidence">
           </div>
           <div class="project-body">
             <div class="project-tags">
-              <span class="p-tag">Technical SEO</span>
-              <span class="p-tag">On-Page SEO</span>
-              <span class="p-tag">Analytics</span>
+              <span class="p-tag">Search Console</span>
+              <span class="p-tag">XML Sitemap</span>
+              <span class="p-tag">Robots.txt</span>
+              <span class="p-tag">Rank Math</span>
             </div>
-            <h3 class="project-title">Classic Autos / Client Project 01</h3>
+            <h3 class="project-title">Classic Autos — GSC & Technical SEO</h3>
             <p class="project-desc">
-              Comprehensive SEO optimization covering Google Search Console monitoring, site crawlability, meta tags, and traffic growth strategy.
+              Search performance and technical SEO audit for <strong>classicautos.com.pk</strong>. Configured XML sitemap index via Rank Math, optimized robots.txt crawl directives, and achieved 9.92K organic clicks with 316K search impressions.
             </p>
             <div class="project-stats-row">
               <div class="p-stat">
@@ -1576,6 +1556,10 @@
                 <div class="p-stat-lbl">Impressions</div>
               </div>
               <div class="p-stat">
+                <div class="p-stat-val">3.1%</div>
+                <div class="p-stat-lbl">Avg CTR</div>
+              </div>
+              <div class="p-stat">
                 <div class="p-stat-val">4.9</div>
                 <div class="p-stat-lbl">Avg Position</div>
               </div>
@@ -1583,69 +1567,38 @@
           </div>
         </article>
 
-        <!-- Placeholder Project Card 2 -->
+        <!-- Real Project Card 2: Classic Autos Local GMB Growth -->
         <article class="glass-card project-card">
-          <div class="project-media-placeholder">
-            <i class="fa-solid fa-globe"></i>
-            <span>Project Screenshot 02 Placeholder</span>
-            <small style="font-size: 0.72rem; color: var(--accent-lime);">Ready for Indexing / Sitemap Evidence</small>
-          </div>
-          <div class="project-body">
-            <div class="project-tags">
-              <span class="p-tag">Indexing</span>
-              <span class="p-tag">Sitemap & Robots</span>
-              <span class="p-tag">Keyword Research</span>
-            </div>
-            <h3 class="project-title">TechnoInn / Client Project 02</h3>
-            <p class="project-desc">
-              Technical indexing audit, sitemap optimization, and search intent keyword structure to boost organic domain impressions.
-            </p>
-            <div class="project-stats-row">
-              <div class="p-stat">
-                <div class="p-stat-val">860</div>
-                <div class="p-stat-lbl">Clicks</div>
-              </div>
-              <div class="p-stat">
-                <div class="p-stat-val">31.1K</div>
-                <div class="p-stat-lbl">Impressions</div>
-              </div>
-              <div class="p-stat">
-                <div class="p-stat-val">9.5</div>
-                <div class="p-stat-lbl">Avg Position</div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Placeholder Project Card 3 -->
-        <article class="glass-card project-card">
-          <div class="project-media-placeholder">
-            <i class="fa-solid fa-map-location-dot"></i>
-            <span>Project Screenshot 03 Placeholder</span>
-            <small style="font-size: 0.72rem; color: var(--accent-lime);">Ready for Local GBP Growth Evidence</small>
+          <div class="project-image-wrapper">
+            <span class="project-badge"><i class="fa-solid fa-chart-line"></i> Local Growth</span>
+            <img src="assets/classic-autos-gmb.png" alt="Classic Autos Google Business Profile GMB Performance Overview">
           </div>
           <div class="project-body">
             <div class="project-tags">
               <span class="p-tag">Local SEO</span>
               <span class="p-tag">Google Business Profile</span>
-              <span class="p-tag">Directions</span>
+              <span class="p-tag">Map Directions</span>
             </div>
-            <h3 class="project-title">Local SEO Growth Campaign</h3>
+            <h3 class="project-title">Classic Autos — Local SEO & GMB Growth</h3>
             <p class="project-desc">
-              Google Business Profile optimization driving profile interactions, map directions, customer phone calls, and direct website visits.
+              Google Business Profile (GMB) optimization for Classic Autos. Increased total profile interactions to <strong>241 (+51.6%)</strong> and direction requests to <strong>128 (+68.4%)</strong>.
             </p>
             <div class="project-stats-row">
               <div class="p-stat">
-                <div class="p-stat-val">+184%</div>
+                <div class="p-stat-val">241</div>
                 <div class="p-stat-lbl">Interactions</div>
               </div>
               <div class="p-stat">
-                <div class="p-stat-val">+248%</div>
-                <div class="p-stat-lbl">Site Clicks</div>
+                <div class="p-stat-val">+51.6%</div>
+                <div class="p-stat-lbl">GMB Growth</div>
               </div>
               <div class="p-stat">
-                <div class="p-stat-val">+122%</div>
+                <div class="p-stat-val">128</div>
                 <div class="p-stat-lbl">Directions</div>
+              </div>
+              <div class="p-stat">
+                <div class="p-stat-val">+68.4%</div>
+                <div class="p-stat-lbl">Dir Growth</div>
               </div>
             </div>
           </div>
