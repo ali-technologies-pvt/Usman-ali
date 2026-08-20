@@ -74,6 +74,7 @@
     /* Modern Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
+      height: 6px;
     }
     ::-webkit-scrollbar-track {
       background: var(--bg-dark);
@@ -786,7 +787,7 @@
     }
 
     /* ==========================================================================
-       PROJECTS SECTION (CLASSIC AUTOS REAL EVIDENCE ADDED)
+       PROJECTS SECTION WITH THUMBNAIL SLIDER
        ========================================================================== */
     .project-filters {
       display: flex;
@@ -816,54 +817,162 @@
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      grid-template-columns: minmax(300px, 900px);
+      justify-content: center;
       gap: 28px;
     }
 
-    .project-card {
+    .project-card-wide {
       overflow: hidden;
       display: flex;
       flex-direction: column;
     }
 
-    .project-image-wrapper {
+    /* Slider Component Styling */
+    .project-slider-wrapper {
       position: relative;
       width: 100%;
-      height: 240px;
-      background: #0a0e17;
-      overflow: hidden;
+      background: #080c14;
       border-bottom: 1px solid var(--border-glass);
     }
 
-    .project-image-wrapper img {
+    .slider-main-viewport {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      overflow: hidden;
+      background: #0a0e17;
+    }
+
+    .slider-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .slide-item {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #05080e;
+    }
+
+    .slider-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 6px 14px;
+      border-radius: 30px;
+      background: rgba(10, 14, 24, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-glass-bright);
+      color: var(--accent-lime);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(10, 14, 24, 0.75);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-glass);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 15;
+      transition: var(--transition);
+    }
+
+    .slider-arrow:hover {
+      background: var(--accent-lime);
+      color: #04120a;
+      border-color: var(--accent-lime);
+      box-shadow: 0 0 15px var(--accent-lime-glow);
+    }
+
+    .slider-arrow.prev { left: 14px; }
+    .slider-arrow.next { right: 14px; }
+
+    /* Thumbnail Strip */
+    .thumbnail-strip-bar {
+      display: flex;
+      gap: 12px;
+      padding: 12px 16px;
+      background: rgba(10, 14, 24, 0.9);
+      border-top: 1px solid var(--border-glass);
+      overflow-x: auto;
+      align-items: center;
+    }
+
+    .thumb-item {
+      position: relative;
+      width: 100px;
+      height: 60px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      opacity: 0.5;
+      transition: var(--transition);
+      flex-shrink: 0;
+      background: #000;
+    }
+
+    .thumb-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top;
-      transition: transform 0.5s ease;
     }
 
-    .project-card:hover .project-image-wrapper img {
-      transform: scale(1.04);
+    .thumb-item:hover {
+      opacity: 0.85;
     }
 
-    .project-badge {
+    .thumb-item.active {
+      opacity: 1;
+      border-color: var(--accent-lime);
+      box-shadow: 0 0 12px var(--accent-lime-glow);
+    }
+
+    .thumb-caption {
       position: absolute;
-      top: 12px;
-      right: 12px;
-      padding: 4px 10px;
-      border-radius: 20px;
-      background: rgba(10, 14, 24, 0.85);
-      backdrop-filter: blur(8px);
-      border: 1px solid var(--border-glass-bright);
-      color: var(--accent-lime);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      font-size: 0.62rem;
+      padding: 2px 4px;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .project-body {
-      padding: 24px;
+      padding: 28px;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -871,14 +980,14 @@
 
     .project-tags {
       display: flex;
-      gap: 6px;
+      gap: 8px;
       flex-wrap: wrap;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .p-tag {
-      font-size: 0.72rem;
-      padding: 3px 8px;
+      font-size: 0.75rem;
+      padding: 4px 10px;
       border-radius: 6px;
       background: rgba(16, 185, 129, 0.12);
       color: var(--accent-lime);
@@ -887,45 +996,51 @@
 
     .project-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .project-desc {
-      font-size: 0.88rem;
+      font-size: 0.95rem;
       color: var(--text-muted);
-      margin-bottom: 18px;
-      line-height: 1.5;
+      margin-bottom: 22px;
+      line-height: 1.6;
     }
 
     .project-stats-row {
-      display: flex;
-      justify-content: space-between;
-      padding-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding-top: 18px;
       border-top: 1px solid var(--border-glass);
       margin-top: auto;
     }
 
     .p-stat {
       text-align: center;
+      padding: 10px;
+      background: rgba(10, 14, 24, 0.5);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
     }
 
     .p-stat-val {
       font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 1.1rem;
+      font-weight: 800;
+      font-size: 1.3rem;
       color: var(--accent-lime);
     }
 
     .p-stat-lbl {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
       text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
     /* ==========================================================================
-       CONTACT SECTION
+       CONTACT SECTION & RESET SUCCESS BANNER
        ========================================================================== */
     .contact-box {
       padding: 48px;
@@ -1031,6 +1146,31 @@
       min-height: 120px;
     }
 
+    /* Glassmorphic Success Banner */
+    .form-success-box {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--accent-lime);
+      color: #fff;
+      font-size: 0.88rem;
+      margin-top: 14px;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .form-success-box i {
+      font-size: 1.2rem;
+      color: var(--accent-lime);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* ==========================================================================
        FOOTER
        ========================================================================== */
@@ -1085,8 +1225,11 @@
       .services-grid, .projects-grid {
         grid-template-columns: 1fr;
       }
-      .education-grid {
-        grid-template-columns: 1fr;
+      .education-grid, .project-stats-row {
+        grid-template-columns: 1fr 1fr;
+      }
+      .slider-main-viewport {
+        height: 260px;
       }
     }
 
@@ -1180,7 +1323,7 @@
 
           <div class="hero-actions">
             <a href="#projects" class="btn-glow">
-              <i class="fa-solid fa-eye"></i> View Live Projects Evidence
+              <i class="fa-solid fa-images"></i> View Project Screenshots Slider
             </a>
             <a href="Usman Ali Resume.pdf" target="_blank" class="btn-glass">
               <i class="fa-solid fa-file-arrow-down"></i> Download Resume (PDF)
@@ -1507,45 +1650,90 @@
   </section>
 
   <!-- ==========================================================================
-       PROJECTS SECTION (CLASSIC AUTOS REAL PROJECT EVIDENCE ATTACHED)
+       PROJECTS SECTION WITH INTERACTIVE THUMBNAIL SLIDER
        ========================================================================== -->
   <section class="section" id="projects">
     <div class="container">
       
       <div class="section-header">
         <span class="section-subtitle">Portfolio Showcase</span>
-        <h2 class="section-title">Featured Projects & Real Evidence</h2>
-        <p class="section-desc">Actual client results, Search Console analytics, Sitemap setups, and Google Business Profile growth metrics.</p>
-      </div>
-
-      <!-- Filter Buttons -->
-      <div class="project-filters">
-        <button class="filter-btn active">All Projects</button>
-        <button class="filter-btn">Search Console</button>
-        <button class="filter-btn">Technical SEO</button>
-        <button class="filter-btn">Local SEO</button>
+        <h2 class="section-title">Classic Autos — Case Study & Project Evidence</h2>
+        <p class="section-desc">Click on thumbnails below or use arrows to view Search Console performance, Sitemap structure, Robots.txt, and GMB Map directions.</p>
       </div>
 
       <!-- Projects Grid -->
       <div class="projects-grid">
 
-        <!-- Real Project Card 1: Classic Autos GSC & Technical SEO -->
-        <article class="glass-card project-card">
-          <div class="project-image-wrapper">
-            <span class="project-badge"><i class="fa-solid fa-circle-check"></i> Verified Evidence</span>
-            <img src="assets/classic-autos-gsc.png" alt="Classic Autos Search Console, Sitemap and Robots.txt Evidence">
+        <!-- Classic Autos Interactive Case Study Card with Thumbnail Slider -->
+        <article class="glass-card project-card-wide">
+          
+          <!-- Slider Component -->
+          <div class="project-slider-wrapper">
+            
+            <span class="slider-badge" id="slideBadge">
+              <i class="fa-solid fa-images"></i> Evidence Slide <span id="currentSlideNum">1</span> / 2
+            </span>
+
+            <!-- Main Viewport -->
+            <div class="slider-main-viewport">
+              <button class="slider-arrow prev" onclick="moveSlide(-1)" aria-label="Previous Slide">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+
+              <div class="slider-track" id="sliderTrack">
+                
+                <!-- Slide 1: GSC, Sitemap & Robots -->
+                <div class="slide-item">
+                  <img src="assets/classic-autos-gsc.png" alt="Classic Autos Search Console, Sitemap and Robots.txt Evidence">
+                </div>
+
+                <!-- Slide 2: GMB Overview & Directions -->
+                <div class="slide-item">
+                  <img src="assets/classic-autos-gmb.png" alt="Classic Autos Google Business Profile GMB Performance Overview">
+                </div>
+
+              </div>
+
+              <button class="slider-arrow next" onclick="moveSlide(1)" aria-label="Next Slide">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+
+            <!-- Thumbnail Navigation Strip Bar -->
+            <div class="thumbnail-strip-bar" id="thumbStrip">
+              
+              <!-- Thumb 1 -->
+              <div class="thumb-item active" onclick="goToSlide(0)">
+                <img src="assets/classic-autos-gsc.png" alt="Thumb Search Console">
+                <div class="thumb-caption">GSC & Technical</div>
+              </div>
+
+              <!-- Thumb 2 -->
+              <div class="thumb-item" onclick="goToSlide(1)">
+                <img src="assets/classic-autos-gmb.png" alt="Thumb GMB Growth">
+                <div class="thumb-caption">GMB & Local SEO</div>
+              </div>
+
+            </div>
+
           </div>
+
+          <!-- Project Body & Case Study Info -->
           <div class="project-body">
             <div class="project-tags">
-              <span class="p-tag">Search Console</span>
-              <span class="p-tag">XML Sitemap</span>
+              <span class="p-tag">Google Search Console</span>
+              <span class="p-tag">Google Business Profile (GMB)</span>
+              <span class="p-tag">Rank Math XML Sitemap</span>
               <span class="p-tag">Robots.txt</span>
-              <span class="p-tag">Rank Math</span>
+              <span class="p-tag">Local SEO</span>
             </div>
-            <h3 class="project-title">Classic Autos — GSC & Technical SEO</h3>
+            
+            <h3 class="project-title">Classic Autos (classicautos.com.pk) — SEO Overhaul</h3>
+            
             <p class="project-desc">
-              Search performance and technical SEO audit for <strong>classicautos.com.pk</strong>. Configured XML sitemap index via Rank Math, optimized robots.txt crawl directives, and achieved 9.92K organic clicks with 316K search impressions.
+              Comprehensive SEO optimization strategy for <strong>Classic Autos</strong>. Addressed technical crawl directives via custom <code>robots.txt</code>, generated rank math XML sitemaps, monitored Search Console queries (yielding 9.92K clicks & 316K impressions), and boosted local Google Business Profile interactions by <strong>+51.6%</strong> and map direction requests by <strong>+68.4%</strong>.
             </p>
+
             <div class="project-stats-row">
               <div class="p-stat">
                 <div class="p-stat-val">9.92K</div>
@@ -1556,52 +1744,16 @@
                 <div class="p-stat-lbl">Impressions</div>
               </div>
               <div class="p-stat">
-                <div class="p-stat-val">3.1%</div>
-                <div class="p-stat-lbl">Avg CTR</div>
+                <div class="p-stat-val">241 (+51.6%)</div>
+                <div class="p-stat-lbl">GMB Interactions</div>
               </div>
               <div class="p-stat">
-                <div class="p-stat-val">4.9</div>
-                <div class="p-stat-lbl">Avg Position</div>
+                <div class="p-stat-val">128 (+68.4%)</div>
+                <div class="p-stat-lbl">Direction Requests</div>
               </div>
             </div>
           </div>
-        </article>
 
-        <!-- Real Project Card 2: Classic Autos Local GMB Growth -->
-        <article class="glass-card project-card">
-          <div class="project-image-wrapper">
-            <span class="project-badge"><i class="fa-solid fa-chart-line"></i> Local Growth</span>
-            <img src="assets/classic-autos-gmb.png" alt="Classic Autos Google Business Profile GMB Performance Overview">
-          </div>
-          <div class="project-body">
-            <div class="project-tags">
-              <span class="p-tag">Local SEO</span>
-              <span class="p-tag">Google Business Profile</span>
-              <span class="p-tag">Map Directions</span>
-            </div>
-            <h3 class="project-title">Classic Autos — Local SEO & GMB Growth</h3>
-            <p class="project-desc">
-              Google Business Profile (GMB) optimization for Classic Autos. Increased total profile interactions to <strong>241 (+51.6%)</strong> and direction requests to <strong>128 (+68.4%)</strong>.
-            </p>
-            <div class="project-stats-row">
-              <div class="p-stat">
-                <div class="p-stat-val">241</div>
-                <div class="p-stat-lbl">Interactions</div>
-              </div>
-              <div class="p-stat">
-                <div class="p-stat-val">+51.6%</div>
-                <div class="p-stat-lbl">GMB Growth</div>
-              </div>
-              <div class="p-stat">
-                <div class="p-stat-val">128</div>
-                <div class="p-stat-lbl">Directions</div>
-              </div>
-              <div class="p-stat">
-                <div class="p-stat-val">+68.4%</div>
-                <div class="p-stat-lbl">Dir Growth</div>
-              </div>
-            </div>
-          </div>
         </article>
 
       </div>
@@ -1661,24 +1813,30 @@
             </div>
           </div>
 
-          <!-- Contact Form -->
+          <!-- Contact Form with Auto-Reset on Submit -->
           <div>
-            <form class="contact-form" onsubmit="handleFormSubmit(event)">
+            <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)">
               <div class="form-group">
-                <input type="text" placeholder="Your Name" required>
+                <input type="text" name="name" placeholder="Your Name" required>
               </div>
               <div class="form-group">
-                <input type="email" placeholder="Your Email Address" required>
+                <input type="email" name="email" placeholder="Your Email Address" required>
               </div>
               <div class="form-group">
-                <input type="text" placeholder="Subject (e.g. Technical SEO Audit)" required>
+                <input type="text" name="subject" placeholder="Subject (e.g. Technical SEO Audit)" required>
               </div>
               <div class="form-group">
-                <textarea placeholder="Tell me about your project, website, or SEO requirements..." required></textarea>
+                <textarea name="message" placeholder="Tell me about your project, website, or SEO requirements..." required></textarea>
               </div>
               <button type="submit" class="btn-glow" style="width: 100%; justify-content: center; padding: 14px;">
                 <i class="fa-solid fa-paper-plane"></i> Send Message
               </button>
+
+              <!-- Glassmorphic Form Reset Success Banner -->
+              <div class="form-success-box" id="formSuccessMsg">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Thank you! Your message has been sent successfully. Usman Ali will reach out to you shortly.</span>
+              </div>
             </form>
           </div>
 
@@ -1712,19 +1870,13 @@
   </footer>
 
   <!-- ==========================================================================
-       JAVASCRIPT FOR INTERACTIVITY
+       JAVASCRIPT FOR INTERACTIVITY & SLIDER
        ========================================================================== -->
   <script>
     // Mobile Navigation Menu Toggle
     function toggleMenu() {
       const navLinks = document.getElementById('navLinks');
       navLinks.classList.toggle('active');
-    }
-
-    // Contact Form Handler
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      alert('Thank you for reaching out, Usman Ali will contact you shortly!');
     }
 
     // Smooth Navigation Highlight & Close Menu on Click
@@ -1734,6 +1886,67 @@
         navLinks.classList.remove('active');
       });
     });
+
+    // Thumbnail Slider Controller
+    let currentSlideIndex = 0;
+    const totalSlides = 2;
+
+    function updateSlider() {
+      const track = document.getElementById('sliderTrack');
+      const slideNumSpan = document.getElementById('currentSlideNum');
+      const thumbs = document.querySelectorAll('.thumb-item');
+
+      if (track) {
+        track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+      }
+      if (slideNumSpan) {
+        slideNumSpan.textContent = currentSlideIndex + 1;
+      }
+      thumbs.forEach((thumb, idx) => {
+        if (idx === currentSlideIndex) {
+          thumb.classList.add('active');
+        } else {
+          thumb.classList.remove('active');
+        }
+      });
+    }
+
+    function moveSlide(direction) {
+      currentSlideIndex += direction;
+      if (currentSlideIndex >= totalSlides) {
+        currentSlideIndex = 0;
+      } else if (currentSlideIndex < 0) {
+        currentSlideIndex = totalSlides - 1;
+      }
+      updateSlider();
+    }
+
+    function goToSlide(index) {
+      currentSlideIndex = index;
+      updateSlider();
+    }
+
+    // Contact Form Handler & Reset
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const successMsg = document.getElementById('formSuccessMsg');
+
+      // Display glassmorphic success banner
+      if (successMsg) {
+        successMsg.style.display = 'flex';
+      }
+
+      // Clear / Reset form inputs completely
+      form.reset();
+
+      // Auto-hide success banner after 6 seconds
+      setTimeout(() => {
+        if (successMsg) {
+          successMsg.style.display = 'none';
+        }
+      }, 6000);
+    }
   </script>
 </body>
 </html>
