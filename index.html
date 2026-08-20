@@ -31,7 +31,7 @@
       --text-muted: #94a3b8;
       --border-glass: rgba(255, 255, 255, 0.08);
       --border-glass-bright: rgba(16, 185, 129, 0.3);
-      --max-width: 1200px;
+      --max-width: 1240px;
       --radius-lg: 20px;
       --radius-md: 14px;
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -500,8 +500,8 @@
     }
 
     .avatar-wrapper {
-      width: 140px;
-      height: 140px;
+      width: 160px;
+      height: 160px;
       margin: 0 auto 20px;
       border-radius: 50%;
       padding: 4px;
@@ -513,8 +513,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: top;
       border-radius: 50%;
-      background: #111827;
+      background: #0d121c;
     }
 
     .profile-name {
@@ -787,34 +788,52 @@
     }
 
     /* ==========================================================================
-       PROJECTS SECTION WITH MULTIPLE INTERACTIVE THUMBNAIL SLIDERS
+       3 PARALLEL CARDS GRID (DESKTOP VIEW) WITH UN-CROPPED FITTED IMAGES
        ========================================================================== */
     .projects-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
     }
 
-    .project-card-wide {
+    .project-card-item {
+      background: rgba(16, 22, 36, 0.65);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      transition: var(--transition);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
     }
 
-    /* Slider Component Styling */
+    .project-card-item:hover {
+      border-color: var(--border-glass-bright);
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(16, 185, 129, 0.18);
+    }
+
+    /* Slider Component Styling inside 3-column card */
     .project-slider-wrapper {
       position: relative;
       width: 100%;
-      background: #080c14;
+      background: #05080f;
       border-bottom: 1px solid var(--border-glass);
     }
 
     .slider-main-viewport {
       position: relative;
       width: 100%;
-      height: 380px;
+      height: 250px;
       overflow: hidden;
-      background: #0a0e17;
+      background: #05080f;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .slider-track {
@@ -831,43 +850,48 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 4px;
     }
 
+    /* UN-CROPPED FITTED IMAGE SPECIFICATION */
     .slide-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      background: #05080e;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain !important;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
 
     .slider-badge {
       position: absolute;
-      top: 14px;
-      left: 14px;
-      padding: 6px 14px;
-      border-radius: 30px;
-      background: rgba(10, 14, 24, 0.85);
-      backdrop-filter: blur(10px);
+      top: 10px;
+      left: 10px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(8, 12, 20, 0.85);
+      backdrop-filter: blur(8px);
       border: 1px solid var(--border-glass-bright);
       color: var(--accent-lime);
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       font-weight: 700;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       z-index: 10;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
 
     .slider-arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 44px;
-      height: 44px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
-      background: rgba(10, 14, 24, 0.75);
-      backdrop-filter: blur(10px);
+      background: rgba(8, 12, 20, 0.8);
+      backdrop-filter: blur(8px);
       border: 1px solid var(--border-glass);
       color: var(--text-main);
       display: flex;
@@ -875,6 +899,7 @@
       justify-content: center;
       cursor: pointer;
       z-index: 15;
+      font-size: 0.85rem;
       transition: var(--transition);
     }
 
@@ -882,32 +907,32 @@
       background: var(--accent-lime);
       color: #04120a;
       border-color: var(--accent-lime);
-      box-shadow: 0 0 15px var(--accent-lime-glow);
     }
 
-    .slider-arrow.prev { left: 14px; }
-    .slider-arrow.next { right: 14px; }
+    .slider-arrow.prev { left: 8px; }
+    .slider-arrow.next { right: 8px; }
 
-    /* Thumbnail Strip */
+    /* Compact Thumbnail Strip */
     .thumbnail-strip-bar {
       display: flex;
-      gap: 12px;
-      padding: 12px 16px;
-      background: rgba(10, 14, 24, 0.9);
+      gap: 8px;
+      padding: 8px 10px;
+      background: rgba(8, 12, 20, 0.95);
       border-top: 1px solid var(--border-glass);
       overflow-x: auto;
       align-items: center;
+      justify-content: center;
     }
 
     .thumb-item {
       position: relative;
-      width: 100px;
-      height: 60px;
-      border-radius: 8px;
+      width: 65px;
+      height: 42px;
+      border-radius: 6px;
       overflow: hidden;
       cursor: pointer;
       border: 2px solid transparent;
-      opacity: 0.5;
+      opacity: 0.55;
       transition: var(--transition);
       flex-shrink: 0;
       background: #000;
@@ -916,7 +941,8 @@
     .thumb-item img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      background: #000;
     }
 
     .thumb-item:hover {
@@ -926,7 +952,7 @@
     .thumb-item.active {
       opacity: 1;
       border-color: var(--accent-lime);
-      box-shadow: 0 0 12px var(--accent-lime-glow);
+      box-shadow: 0 0 10px var(--accent-lime-glow);
     }
 
     .thumb-caption {
@@ -934,10 +960,10 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0, 0, 0, 0.8);
       color: #fff;
-      font-size: 0.62rem;
-      padding: 2px 4px;
+      font-size: 0.58rem;
+      padding: 1px 2px;
       text-align: center;
       white-space: nowrap;
       overflow: hidden;
@@ -945,7 +971,7 @@
     }
 
     .project-body {
-      padding: 28px;
+      padding: 20px;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -953,15 +979,15 @@
 
     .project-tags {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .p-tag {
-      font-size: 0.75rem;
-      padding: 4px 10px;
-      border-radius: 6px;
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 5px;
       background: rgba(16, 185, 129, 0.12);
       color: var(--accent-lime);
       font-weight: 600;
@@ -969,31 +995,32 @@
 
     .project-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      line-height: 1.3;
     }
 
     .project-desc {
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
-      margin-bottom: 22px;
-      line-height: 1.6;
+      margin-bottom: 18px;
+      line-height: 1.5;
     }
 
     .project-stats-row {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      padding-top: 18px;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding-top: 14px;
       border-top: 1px solid var(--border-glass);
       margin-top: auto;
     }
 
     .p-stat {
       text-align: center;
-      padding: 10px;
-      background: rgba(10, 14, 24, 0.5);
+      padding: 8px 4px;
+      background: rgba(8, 12, 20, 0.6);
       border: 1px solid var(--border-glass);
       border-radius: var(--radius-md);
     }
@@ -1001,15 +1028,15 @@
     .p-stat-val {
       font-family: 'Outfit', sans-serif;
       font-weight: 800;
-      font-size: 1.3rem;
+      font-size: 1.05rem;
       color: var(--accent-lime);
     }
 
     .p-stat-lbl {
-      font-size: 0.72rem;
+      font-size: 0.65rem;
       color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
     }
 
     /* ==========================================================================
@@ -1189,24 +1216,30 @@
     }
 
     /* ==========================================================================
-       RESPONSIVE DESIGN
+       RESPONSIVE BREAKPOINTS (DESKTOP 3 COLUMNS -> TABLET 2 -> MOBILE 1)
        ========================================================================== */
+    @media (max-width: 1100px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media (max-width: 992px) {
       .hero-grid, .about-grid, .contact-grid, .skills-wrapper {
         grid-template-columns: 1fr;
       }
-      .services-grid, .projects-grid {
+      .services-grid {
         grid-template-columns: 1fr;
       }
-      .education-grid, .project-stats-row {
+      .education-grid {
         grid-template-columns: 1fr 1fr;
-      }
-      .slider-main-viewport {
-        height: 260px;
       }
     }
 
     @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
       .nav-links {
         display: none;
       }
@@ -1296,7 +1329,7 @@
 
           <div class="hero-actions">
             <a href="#projects" class="btn-glow">
-              <i class="fa-solid fa-images"></i> View Real Projects Evidence
+              <i class="fa-solid fa-images"></i> View 3 Case Studies
             </a>
             <a href="Usman Ali Resume.pdf" target="_blank" class="btn-glass">
               <i class="fa-solid fa-file-arrow-down"></i> Download Resume (PDF)
@@ -1341,7 +1374,7 @@
             <div class="metric-box">
               <div class="metric-lbl">NXT Event Impressions</div>
               <div class="metric-val">38.1K</div>
-              <div class="metric-trend"><i class="fa-solid fa-arrow-trend-up"></i> Yoast Optimized</div>
+              <div class="metric-trend"><i class="fa-solid fa-arrow-trend-up"></i> Yoast Indexed</div>
             </div>
             <div class="metric-box">
               <div class="metric-lbl">GMB Growth Rate</div>
@@ -1367,7 +1400,7 @@
   </section>
 
   <!-- ==========================================================================
-       ABOUT & EXPERIENCE SECTION
+       ABOUT & EXPERIENCE SECTION WITH USER'S PROFILE PHOTO
        ========================================================================== -->
   <section class="section" id="about">
     <div class="container">
@@ -1380,10 +1413,10 @@
 
       <div class="about-grid">
         
-        <!-- Left: Profile Summary Card -->
+        <!-- Left: Profile Summary Card with Usman Ali's Real Photo -->
         <div class="glass-panel profile-card">
           <div class="avatar-wrapper">
-            <img src="https://ui-avatars.com/api/?name=Usman+Ali&background=10b981&color=04120a&size=200&bold=true" alt="Usman Ali SEO Specialist">
+            <img src="assets/usman-ali.png" alt="Usman Ali SEO Specialist & Digital Marketer">
           </div>
           
           <h3 class="profile-name">Usman Ali</h3>
@@ -1623,48 +1656,39 @@
   </section>
 
   <!-- ==========================================================================
-       PROJECTS SECTION WITH MULTIPLE INTERACTIVE THUMBNAIL SLIDERS
+       PROJECTS SECTION WITH 3 PARALLEL DESKTOP CARDS (UN-CROPPED FITTED IMAGES)
        ========================================================================== -->
   <section class="section" id="projects">
     <div class="container">
       
       <div class="section-header">
         <span class="section-subtitle">Portfolio Showcase</span>
-        <h2 class="section-title">Featured SEO Case Studies & Evidence</h2>
-        <p class="section-desc">Interactive thumbnail carousels featuring real Search Console analytics, XML sitemaps, crawl directives, and GMB growth screenshots.</p>
+        <h2 class="section-title">Featured SEO Case Studies</h2>
+        <p class="section-desc">Side-by-side case studies featuring full un-cropped evidence screenshots, interactive sliders, and key metrics.</p>
       </div>
 
-      <!-- Projects Grid -->
+      <!-- 3 Parallel Desktop Cards Grid -->
       <div class="projects-grid">
 
-        <!-- Project 1: TechnoInn Interactive Case Study -->
-        <article class="glass-card project-card-wide">
-          
-          <!-- Slider Component for TechnoInn -->
+        <!-- Card 1: TechnoInn -->
+        <article class="project-card-item">
           <div class="project-slider-wrapper">
-            
             <span class="slider-badge">
-              <i class="fa-solid fa-images"></i> TechnoInn Evidence <span id="num-technoinn">1</span> / 2
+              <i class="fa-solid fa-images"></i> TechnoInn <span id="num-technoinn">1</span>/2
             </span>
 
-            <!-- Main Viewport -->
             <div class="slider-main-viewport">
               <button class="slider-arrow prev" onclick="moveProjectSlide('technoinn', -1)" aria-label="Previous Slide">
                 <i class="fa-solid fa-chevron-left"></i>
               </button>
 
               <div class="slider-track" id="track-technoinn">
-                
-                <!-- Slide 1: TechnoInn GSC, Yoast Sitemap, Robots & Index Issues -->
                 <div class="slide-item">
-                  <img src="assets/technoinn-gsc.png" alt="TechnoInn Search Console, Yoast Sitemap, Robots.txt & Google Index Health">
+                  <img src="assets/technoinn-gsc.png" alt="TechnoInn Search Console & Yoast Evidence">
                 </div>
-
-                <!-- Slide 2: TechnoInn GMB Interactions, Directions & Website Clicks -->
                 <div class="slide-item">
-                  <img src="assets/technoinn-gmb.png" alt="TechnoInn Google Business Profile Interactions, Directions and Website Clicks">
+                  <img src="assets/technoinn-gmb.png" alt="TechnoInn Google Business Profile Clicks Evidence">
                 </div>
-
               </div>
 
               <button class="slider-arrow next" onclick="moveProjectSlide('technoinn', 1)" aria-label="Next Slide">
@@ -1672,53 +1696,42 @@
               </button>
             </div>
 
-            <!-- Thumbnail Strip Bar for TechnoInn -->
             <div class="thumbnail-strip-bar">
-              
-              <!-- Thumb 1 -->
               <div class="thumb-item active" id="thumb-technoinn-0" onclick="goToProjectSlide('technoinn', 0)">
-                <img src="assets/technoinn-gsc.png" alt="TechnoInn Search Console Thumb">
+                <img src="assets/technoinn-gsc.png" alt="TechnoInn Thumb 1">
                 <div class="thumb-caption">GSC & Yoast</div>
               </div>
-
-              <!-- Thumb 2 -->
               <div class="thumb-item" id="thumb-technoinn-1" onclick="goToProjectSlide('technoinn', 1)">
-                <img src="assets/technoinn-gmb.png" alt="TechnoInn GMB Clicks Thumb">
-                <div class="thumb-caption">GMB & Clicks</div>
+                <img src="assets/technoinn-gmb.png" alt="TechnoInn Thumb 2">
+                <div class="thumb-caption">GMB Clicks</div>
               </div>
-
             </div>
-
           </div>
 
-          <!-- Project Body & Case Study Info -->
           <div class="project-body">
             <div class="project-tags">
-              <span class="p-tag">TechnoInn</span>
-              <span class="p-tag">Google Search Console</span>
-              <span class="p-tag">Yoast XML Sitemap</span>
-              <span class="p-tag">Google Index Health</span>
-              <span class="p-tag">Local SEO</span>
+              <span class="p-tag">technoinn.net</span>
+              <span class="p-tag">Yoast SEO</span>
+              <span class="p-tag">Index Health</span>
             </div>
             
-            <h3 class="project-title">TechnoInn (technoinn.net) — Search Performance & GMB Growth</h3>
-            
+            <h3 class="project-title">TechnoInn</h3>
             <p class="project-desc">
-              Comprehensive SEO audit and Google Business Profile scaling for <strong>technoinn.net</strong>. Configured Yoast XML sitemaps, verified clean Google Indexing (no manual or security issues), generated 860 clicks & 31.1K impressions, and achieved <strong>+184.2% Profile Interaction Growth</strong>, <strong>+248.6% Website Click Growth</strong>, and <strong>+122.2% Direction Request Growth</strong>.
+              Yoast XML sitemap audit, clean Google Indexing setup, 31.1K search impressions, and +248.6% website click growth.
             </p>
 
             <div class="project-stats-row">
               <div class="p-stat">
                 <div class="p-stat-val">31.1K</div>
-                <div class="p-stat-lbl">Search Impressions</div>
+                <div class="p-stat-lbl">Impressions</div>
               </div>
               <div class="p-stat">
                 <div class="p-stat-val">216 (+184%)</div>
-                <div class="p-stat-lbl">GMB Interactions</div>
+                <div class="p-stat-lbl">GMB Growth</div>
               </div>
               <div class="p-stat">
                 <div class="p-stat-val">122 (+248%)</div>
-                <div class="p-stat-lbl">Website Clicks</div>
+                <div class="p-stat-lbl">Site Clicks</div>
               </div>
               <div class="p-stat">
                 <div class="p-stat-val">80 (+122%)</div>
@@ -1726,37 +1739,27 @@
               </div>
             </div>
           </div>
-
         </article>
 
-        <!-- Project 2: NXT Event Interactive Case Study -->
-        <article class="glass-card project-card-wide">
-          
-          <!-- Slider Component for NXT Event -->
+        <!-- Card 2: NXT Event Australia -->
+        <article class="project-card-item">
           <div class="project-slider-wrapper">
-            
             <span class="slider-badge">
-              <i class="fa-solid fa-images"></i> NXT Event Evidence <span id="num-nxtevent">1</span> / 2
+              <i class="fa-solid fa-images"></i> NXT Event <span id="num-nxtevent">1</span>/2
             </span>
 
-            <!-- Main Viewport -->
             <div class="slider-main-viewport">
               <button class="slider-arrow prev" onclick="moveProjectSlide('nxtevent', -1)" aria-label="Previous Slide">
                 <i class="fa-solid fa-chevron-left"></i>
               </button>
 
               <div class="slider-track" id="track-nxtevent">
-                
-                <!-- Slide 1: NXT Event GSC, Yoast Sitemap & Robots -->
                 <div class="slide-item">
-                  <img src="assets/nxtevent-gsc.png" alt="NXT Event Search Console, Yoast Sitemap, Robots.txt & Index Health">
+                  <img src="assets/nxtevent-gsc.png" alt="NXT Event Search Console & Yoast Evidence">
                 </div>
-
-                <!-- Slide 2: NXT Event Local GMB Growth -->
                 <div class="slide-item">
-                  <img src="assets/nxtevent-gmb.png" alt="NXT Event Google Business Profile GMB Performance Overview">
+                  <img src="assets/nxtevent-gmb.png" alt="NXT Event GMB Profile Evidence">
                 </div>
-
               </div>
 
               <button class="slider-arrow next" onclick="moveProjectSlide('nxtevent', 1)" aria-label="Next Slide">
@@ -1764,39 +1767,28 @@
               </button>
             </div>
 
-            <!-- Thumbnail Strip Bar for NXT Event -->
             <div class="thumbnail-strip-bar">
-              
-              <!-- Thumb 1 -->
               <div class="thumb-item active" id="thumb-nxtevent-0" onclick="goToProjectSlide('nxtevent', 0)">
-                <img src="assets/nxtevent-gsc.png" alt="NXT Event GSC Thumb">
+                <img src="assets/nxtevent-gsc.png" alt="NXT Event Thumb 1">
                 <div class="thumb-caption">GSC & Yoast</div>
               </div>
-
-              <!-- Thumb 2 -->
               <div class="thumb-item" id="thumb-nxtevent-1" onclick="goToProjectSlide('nxtevent', 1)">
-                <img src="assets/nxtevent-gmb.png" alt="NXT Event GMB Thumb">
-                <div class="thumb-caption">GMB & Local SEO</div>
+                <img src="assets/nxtevent-gmb.png" alt="NXT Event Thumb 2">
+                <div class="thumb-caption">GMB Overview</div>
               </div>
-
             </div>
-
           </div>
 
-          <!-- Project Body & Case Study Info -->
           <div class="project-body">
             <div class="project-tags">
-              <span class="p-tag">NXT Event Australia</span>
-              <span class="p-tag">Google Search Console</span>
-              <span class="p-tag">Yoast XML Sitemap (6 Indexes)</span>
+              <span class="p-tag">nxtevent.com.au</span>
+              <span class="p-tag">6 Sitemaps</span>
               <span class="p-tag">Robots.txt</span>
-              <span class="p-tag">Google Index Health</span>
             </div>
             
-            <h3 class="project-title">NXT Event (nxtevent.com.au) — Australian Event SEO & Local Visibility</h3>
-            
+            <h3 class="project-title">NXT Event Australia</h3>
             <p class="project-desc">
-              Technical SEO and local search optimization for <strong>nxtevent.com.au</strong>. Configured 6 XML sitemaps via Yoast SEO (covering posts, pages, products, categories, product tags), optimized crawl budget in robots.txt, verified zero index issues, and generated <strong>38.1K impressions</strong> along with strong local GMB profile interactions.
+              Australian event SEO with 6 Yoast XML sitemaps, robots.txt crawl budget optimization, and 38.1K search impressions.
             </p>
 
             <div class="project-stats-row">
@@ -1806,7 +1798,7 @@
               </div>
               <div class="p-stat">
                 <div class="p-stat-val">386</div>
-                <div class="p-stat-lbl">Organic Clicks</div>
+                <div class="p-stat-lbl">Clicks</div>
               </div>
               <div class="p-stat">
                 <div class="p-stat-val">6 Sitemaps</div>
@@ -1818,37 +1810,27 @@
               </div>
             </div>
           </div>
-
         </article>
 
-        <!-- Project 3: Classic Autos Interactive Case Study -->
-        <article class="glass-card project-card-wide">
-          
-          <!-- Slider Component for Classic Autos -->
+        <!-- Card 3: Classic Autos -->
+        <article class="project-card-item">
           <div class="project-slider-wrapper">
-            
             <span class="slider-badge">
-              <i class="fa-solid fa-images"></i> Classic Autos Evidence <span id="num-classicautos">1</span> / 2
+              <i class="fa-solid fa-images"></i> Classic Autos <span id="num-classicautos">1</span>/2
             </span>
 
-            <!-- Main Viewport -->
             <div class="slider-main-viewport">
               <button class="slider-arrow prev" onclick="moveProjectSlide('classicautos', -1)" aria-label="Previous Slide">
                 <i class="fa-solid fa-chevron-left"></i>
               </button>
 
               <div class="slider-track" id="track-classicautos">
-                
-                <!-- Slide 1: GSC, Sitemap & Robots -->
                 <div class="slide-item">
-                  <img src="assets/classic-autos-gsc.png" alt="Classic Autos Search Console, Sitemap and Robots.txt Evidence">
+                  <img src="assets/classic-autos-gsc.png" alt="Classic Autos Search Console & Rank Math Evidence">
                 </div>
-
-                <!-- Slide 2: GMB Overview & Directions -->
                 <div class="slide-item">
-                  <img src="assets/classic-autos-gmb.png" alt="Classic Autos Google Business Profile GMB Performance Overview">
+                  <img src="assets/classic-autos-gmb.png" alt="Classic Autos GMB Interactions Evidence">
                 </div>
-
               </div>
 
               <button class="slider-arrow next" onclick="moveProjectSlide('classicautos', 1)" aria-label="Next Slide">
@@ -1856,39 +1838,28 @@
               </button>
             </div>
 
-            <!-- Thumbnail Strip Bar for Classic Autos -->
             <div class="thumbnail-strip-bar">
-              
-              <!-- Thumb 1 -->
               <div class="thumb-item active" id="thumb-classicautos-0" onclick="goToProjectSlide('classicautos', 0)">
-                <img src="assets/classic-autos-gsc.png" alt="Thumb Search Console">
+                <img src="assets/classic-autos-gsc.png" alt="Classic Autos Thumb 1">
                 <div class="thumb-caption">GSC & Technical</div>
               </div>
-
-              <!-- Thumb 2 -->
               <div class="thumb-item" id="thumb-classicautos-1" onclick="goToProjectSlide('classicautos', 1)">
-                <img src="assets/classic-autos-gmb.png" alt="Thumb GMB Growth">
+                <img src="assets/classic-autos-gmb.png" alt="Classic Autos Thumb 2">
                 <div class="thumb-caption">GMB & Local SEO</div>
               </div>
-
             </div>
-
           </div>
 
-          <!-- Project Body & Case Study Info -->
           <div class="project-body">
             <div class="project-tags">
-              <span class="p-tag">Classic Autos</span>
-              <span class="p-tag">Google Search Console</span>
-              <span class="p-tag">Google Business Profile</span>
-              <span class="p-tag">Rank Math XML Sitemap</span>
-              <span class="p-tag">Robots.txt</span>
+              <span class="p-tag">classicautos.com.pk</span>
+              <span class="p-tag">Rank Math</span>
+              <span class="p-tag">Local SEO</span>
             </div>
             
-            <h3 class="project-title">Classic Autos (classicautos.com.pk) — SEO Overhaul</h3>
-            
+            <h3 class="project-title">Classic Autos</h3>
             <p class="project-desc">
-              Comprehensive SEO optimization strategy for <strong>Classic Autos</strong>. Addressed technical crawl directives via custom <code>robots.txt</code>, generated Rank Math XML sitemaps, monitored Search Console queries (yielding 9.92K clicks & 316K impressions), and boosted local Google Business Profile interactions by <strong>+51.6%</strong> and map direction requests by <strong>+68.4%</strong>.
+              Comprehensive SEO overhaul for classicautos.com.pk driving 9.92K organic clicks, 316K impressions, and +51.6% GMB growth.
             </p>
 
             <div class="project-stats-row">
@@ -1901,16 +1872,15 @@
                 <div class="p-stat-lbl">Impressions</div>
               </div>
               <div class="p-stat">
-                <div class="p-stat-val">241 (+51.6%)</div>
+                <div class="p-stat-val">241 (+51%)</div>
                 <div class="p-stat-lbl">GMB Interactions</div>
               </div>
               <div class="p-stat">
-                <div class="p-stat-val">128 (+68.4%)</div>
-                <div class="p-stat-lbl">Direction Requests</div>
+                <div class="p-stat-val">128 (+68%)</div>
+                <div class="p-stat-lbl">Directions</div>
               </div>
             </div>
           </div>
-
         </article>
 
       </div>
